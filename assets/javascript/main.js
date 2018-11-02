@@ -20,7 +20,7 @@ $(async function() {
         $(target).lightGallery({
             share: false,
             dynamic: true,
-            dynamicEl: gallery[id]
+            dynamicEl: $(gallery[id])
         });
     };
 
@@ -57,19 +57,28 @@ $(async function() {
             let epoch;
             let ts;
 
-            if (file.exif.DateTimeDigitized) {
-                const dtc = moment(file.exif.DateTimeDigitized);
+            if (file.exif.datetimedigitized) {
+                const dtc = moment(file.exif.datetimedigitized);
                 ts = dtc.utc().format('YYYY-MM-DD HH:mm');
                 epoch = dtc.unix();
             } else {
                 epoch = 0;
             }
-
             gallery[item.directory].push({
                 src: file.path,
                 thumb: file.thumb,
                 epoch: epoch,
-                subHtml: ts || 'No date...'
+                subHtml: ts || 'No date...',
+                dataset: {
+                    filename: file.name,
+                    isospeedratings: file.exif.isospeedratings,
+                    datetimeoriginal: file.exif.datetimeoriginal,
+                    model: file.exif.model || '',
+                    make: file.exif.make || '',
+                    gpslatitude: file.exif.gpslatitude || '',
+                    gpslongitude: file.exif.gpslongitude || '',
+                    gpsaltitude: file.exif.gpsaltitude || ''
+                }
             });
         });
 

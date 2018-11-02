@@ -10,7 +10,7 @@ const { forEach } = require('p-iteration');
 /*async function _readExif(fp) {
     return exif
         .read(fp)
-        .then(data => ({ DateTimeDigitized: data.exif.DateTimeDigitized }))
+        .then(data => ({ datetimedigitized: data.exif.DateTimeDigitized }))
         .catch(err => ({ err: 'Missing exif' + err }));
 }
 
@@ -18,7 +18,16 @@ const { forEach } = require('p-iteration');
 
 const _readExif = async filePath => exif
     .read(filePath)
-    .then(data => ({ DateTimeDigitized: data.exif.DateTimeDigitized }))
+    .then(data => ({
+        datetimedigitized: data.exif.DateTimeDigitized,
+        datetimeoriginal: data.exif.DateTimeOriginal,
+        isospeedratings: data.exif.ISO,
+        model: data.image.Model,
+        make: data.image.Make,
+        gpslatitude: data.gps.GPSLatitude,
+        gpslongitude: data.gps.GPSLongitude,
+        gpsaltitude: data.gps.GPSAltitude
+    }))
     .catch(err => ({ err: 'Missing exif' + err }));
 
 const exifInfo = async (list) => {

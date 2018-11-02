@@ -333,6 +333,11 @@ koa@^2.6.1:
     type-is "^1.6.16"
     vary "^1.1.2"
 
+lg-exif@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/lg-exif/-/lg-exif-1.0.0.tgz#5a6d09717df5ebcaa0a1d0ce96bc5e54577d36da"
+  integrity sha512-VCGfbyvE/pj0x04aPlinfoFehMAqnghTS4Fqm3U1VbLAS/rcSxVU8Ar6d7HPvVvs9s7+DBWSLS+5iWAknANykg==
+
 lightgallery@^1.6.11:
   version "1.6.11"
   resolved "https://registry.yarnpkg.com/lightgallery/-/lightgallery-1.6.11.tgz#01a15dab1bbad15ae727c495adbf80b59619183d"

@@ -7,6 +7,7 @@
     <title>My Gallery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/lightgallery.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/lg-exif.min.css" />
     
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     
@@ -14,6 +15,7 @@
     <script src="javascript/jsrender.min.js"></script>
     <script src="javascript/jsrender.min.js"></script>
     <script src="javascript/lightgallery-all.min.js"></script>
+    <script src="javascript/lg-exif.min.js"></script>
     <script src="javascript/moment.min.js"></script>
 
     <script src="javascript/main.js"></script>
@@ -21,7 +23,7 @@
     <!-- Templates -->
     <script id="posterItemTpl" type="text/template">
         <div data-id="{{:title}}" class="tile">
-            <img src="{{:path}}" alt="" class="tile__media">
+            <img src="{{:path}}" alt="" class="tile__media item">
             <span class="tile__content">{{:title}}</span>
         </div>
     </script>
