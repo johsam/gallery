@@ -1,3 +1,5 @@
+/* globals moment:false */
+
 $(async function() {
     let results = [];
     const gallery = {};
@@ -50,12 +52,27 @@ $(async function() {
 
     $.each(results[1], (_i, item) => {
         gallery[item.directory] = [];
+
         $.each(item.files, (_j, file) => {
+            let epoch;
+            let ts;
+
+            if (file.exif.DateTimeDigitized) {
+                const dtc = moment(file.exif.DateTimeDigitized);
+                ts = dtc.utc().format('YYYY-MM-DD HH:mm');
+                epoch = dtc.unix();
+            } else {
+                epoch = 0;
+            }
+
             gallery[item.directory].push({
                 src: file.path,
                 thumb: file.thumb,
-                subHtml: file.exif.DateTimeDigitized ? file.exif.DateTimeDigitized : ''
+                epoch: epoch,
+                subHtml: ts || 'No date...'
             });
         });
+
+        gallery[item.directory].sort((a, b) => b.epoch - a.epoch);
     });
 });

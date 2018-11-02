@@ -25,7 +25,7 @@ const exifInfo = async (list) => {
     // Async loops
     await forEach(list, async (item) => {
         await forEach(item.files, async (oneFile) => {
-            oneFile.exif = await _readExif(oneFile.path);
+            oneFile.exif = await _readExif(oneFile.source);
         });
     });
 
@@ -44,9 +44,11 @@ const allFilesSync = (dir, fileList = []) => {
 
             fileList.push({
                 name: file,
+                source: filePath,
                 path: filePath.replace(process.env.GALLERY_PATH, '/gallery'),
                 thumb: path.join('/thumbs', dirName + '_' + filename),
                 size: fs.statSync(filePath).size,
+                timestamp: fs.statSync(filePath).ctime,
                 type: mime.getType(file),
                 exif: {}
             });
