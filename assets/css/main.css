@@ -1,0 +1,133 @@
+body {
+  margin: 1rem;
+  padding: 0;
+  font-family: "Open Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+div.bg-div {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+div.bg-div:after {
+  content:"";
+  background: url("/images/background.jpg");
+  background-size: cover;
+
+  z-index: -1;
+  position: absolute;
+  opacity: 0.75;
+  top: 0; bottom: 0; left: 0; right: 0;
+
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
+}
+
+
+  
+.header {
+  background-color: #232439;
+  padding: 2rem 2rem;
+  text-align: center;
+  margin: -1rem;
+  margin-bottom: 1rem;
+}
+
+.header__title {
+  margin: 0;
+  color: #fff;
+  font-weight: 300;
+}
+
+
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 2rem;
+}
+
+
+
+.tile {
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border:  5px solid white;
+    margin: -5px;
+    box-shadow:5px 5px 10px black;
+  }
+  .tile::after {
+    content: "";
+    position: absolute;
+    display: block;
+    background-color: rgba(52, 73, 94, 0.55);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s;
+  }
+  
+  .tile:hover::after,
+  .tile:focus::after {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .tile__media {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    display: block;
+    transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+    transition: transform 0.5s, -webkit-transform 0.5s;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+  }
+  
+  .tile:hover .tile__media,
+  .tile:focus .tile__media {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  
+  .tile__content {
+    cursor: pointer;
+    top: 50%;
+    right: 0;
+    left: 0;
+    position: absolute;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    color: #fff;
+    font-size: 2rem;
+    transition: visibility 0.5s, opacity 0.5s;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+  }
+  
+  .tile:hover .tile__content,
+  .tile:focus .tile__content {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+ 
+
+  
