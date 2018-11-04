@@ -24,7 +24,7 @@ $(async function() {
         });
     };
 
-    results = await getAllUrls(['/api/v1/posters', '/api/v1/gallery']);
+    results = await getAllUrls(['/gallery/api/v1/posters', '/gallery/api/v1/gallery']);
 
     // Process posters data
 

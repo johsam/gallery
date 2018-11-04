@@ -5,7 +5,7 @@ const walk = require('../walk');
 const api = (route, galleryPath) => {
     const router = new Router();
 
-    debug(`Adding route ${route} , Images served from ${galleryPath}`);
+    debug(`Adding route ${route}, Poster images served from ${galleryPath}`);
 
     router.get(route, async (ctx) => {
         let list = await walk.exifInfo(walk.postersSync(galleryPath));

@@ -56,8 +56,8 @@ const allFilesSync = (dir, fileList = []) => {
             fileList.push({
                 name: file,
                 source: filePath,
-                path: filePath.replace(galleryPath, '/gallery'),
-                thumb: path.join('/thumbs', dirName + '_' + filename),
+                path: filePath.replace(galleryPath, '/gallery/gallery'),
+                thumb: path.join('/gallery/thumbs', dirName + '_' + filename),
                 size: fs.statSync(filePath).size,
                 timestamp: fs.statSync(filePath).ctime,
                 type: mime.getType(file),
@@ -78,7 +78,7 @@ const postersSync = (dir, fileList = []) => {
         } else if (fs.lstatSync(filePath).isSymbolicLink()) {
             fileList.push({
                 name: file,
-                path: path.join(path.dirname(filePath), fs.readlinkSync(filePath)).replace(galleryPath, '/gallery'),
+                path: path.join(path.dirname(filePath), fs.readlinkSync(filePath)).replace(galleryPath, '/gallery/gallery'),
                 size: fs.statSync(filePath).size,
                 exif: {}
             });
