@@ -8,17 +8,18 @@ const Koa = require('koa');
 const morgan = require('koa-morgan');
 const serve = require('koa-static');
 const mount = require('koa-mount');
-const json = require('koa-json');
+//const json = require('koa-json');
 
-// Api routes
-const posters = require('./routes/posters');
-const gallery = require('./routes/gallery');
 
 // Constants
 const oneDayMs = 1000 * 60 * 60 * 24;
 const thumbsPath = process.env.THUMBS_PATH;
 const galleryPath = process.env.GALLERY_PATH;
 const port = process.env.LISTEN_PORT;
+
+// Api routes
+const posters = require('./routes/posters').api('/api/v1/posters', galleryPath);
+const gallery = require('./routes/gallery').api('/api/v1/gallery', galleryPath);
 
 // Koa app
 
@@ -38,7 +39,7 @@ app.use(mount('/gallery', serve(galleryPath, { maxage: oneDayMs })));
 
 // api
 
-app.use(json({ pretty: false, param: 'pretty' }));
+//app.use(json({ pretty: false, param: 'pretty' }));
 
 app.use(posters.routes()).use(posters.allowedMethods());
 app.use(gallery.routes()).use(gallery.allowedMethods());

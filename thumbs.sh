@@ -28,11 +28,11 @@ gallery="${GALLERY_PATH}"
 	for d in ./*; do
 		echo "Processing directory '${d}'"
 		(
-			cd ${d} || exit
+			cd "${d}" || exit
 			for f in ./*; do
 				if [ ! -h "${f}" ]; then
 					echo "Processing file '$f'"
-					convert "${f}" -set filename:name "%t" -resize 500x "${thumbs}/${d}_%[filename:name].png"
+					convert "${f}" -set filename:name "%t" -resize 200x "${thumbs}/${d}_%[filename:name].png"
 				fi
 			done
 		)
