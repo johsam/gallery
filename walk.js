@@ -53,16 +53,18 @@ const allFilesSync = (dir, fileList = []) => {
             const dirName = path.basename(path.dirname(filePath));
             const filename = path.basename(filePath.replace(path.extname(filePath), '.png'));
 
-            fileList.push({
-                name: file,
-                source: filePath,
-                path: filePath.replace(galleryPath, '/gallery/gallery'),
-                thumb: path.join('/gallery/thumbs', dirName + '_' + filename),
-                size: fs.statSync(filePath).size,
-                timestamp: fs.statSync(filePath).ctime,
-                type: mime.getType(file),
-                exif: {}
-            });
+            if (file !== 'poster.png') {
+                fileList.push({
+                    name: file,
+                    source: filePath,
+                    path: filePath.replace(galleryPath, '/gallery/gallery'),
+                    thumb: path.join('/gallery/thumbs', dirName + '_' + filename),
+                    size: fs.statSync(filePath).size,
+                    timestamp: fs.statSync(filePath).ctime,
+                    type: mime.getType(file),
+                    exif: {}
+                });
+            }
         }
     });
 
