@@ -77,9 +77,11 @@ const postersSync = (dir, fileList = []) => {
             fileList.push({ directory: file, files: postersSync(filePath) });
         } else if (fs.lstatSync(filePath).isSymbolicLink()) {
             fileList.push({
-                name: file,
-                path: path.join(path.dirname(filePath), fs.readlinkSync(filePath)).replace(galleryPath, '/gallery/gallery'),
-                size: fs.statSync(filePath).size,
+                //name: file,
+                //path: path.join(path.dirname(filePath), fs.readlinkSync(filePath)).replace(galleryPath, '/gallery/gallery'),
+                //size: fs.statSync(filePath).size,
+                // Use poster.png generated from poster link...
+                path: path.join(path.dirname(filePath), 'poster.png').replace(galleryPath, '/gallery/gallery'),
                 exif: {}
             });
         }

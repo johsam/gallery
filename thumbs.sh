@@ -30,9 +30,12 @@ gallery="${GALLERY_PATH}"
 		(
 			cd "${d}" || exit
 			for f in ./*; do
-				if [ ! -h "${f}" ]; then
+				if [ ! -h "${f}" ] && [ "${f}" != "poster.png" ]; then
 					echo "Processing file '$f'"
 					convert "${f}" -set filename:name "%t" -resize 200x "${thumbs}/${d}_%[filename:name].png"
+				else
+					echo "Generating poster '${gallery}/${d}/poster.png'"
+					convert "${f}" -resize 500x "${gallery}/${d}/poster.png"
 				fi
 			done
 		)
