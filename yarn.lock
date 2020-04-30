@@ -241,20 +241,20 @@ jquery@>=1.7.0:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
   integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
 
-jquery@^3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
-  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
+jquery@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.0.tgz#9980b97d9e4194611c36530e7dc46a58d7340fc9"
+  integrity sha512-Xb7SVYMvygPxbFMpTFQiHh1J7HClEaThguL15N/Gg37Lri/qKyhRGZYzHRyLH8Stq3Aow0LsHO2O2ci86fCrNQ==
 
 json-stringify-safe@5:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
 
-jsrender@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/jsrender/-/jsrender-1.0.5.tgz#79d8d8beaf2bed1daa6caec5eeadf70c6f6b6bd1"
-  integrity sha512-ZaO8kYV1XBAcazMVOq32N+QGqMI2DIGdDo1QHROWbQ0JdKYJ6pg3E1WH0xzFTR9yqvoenXDL8+tzbT/JjJNmnA==
+jsrender@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/jsrender/-/jsrender-1.0.6.tgz#67bd4290bc1cea97d962971413457a45cdb109e3"
+  integrity sha512-zjuv7qbn1PPSCDpb9axd6Uad9WOJOsCq7hlFgFt3VEyLv/yDL1oFjnSiHnliJHv1AZVZ5j8F37Diy3WN8eqtXw==
   dependencies:
     through2 "^3.0.1"
 
@@ -378,10 +378,10 @@ lg-exif@^1.0.0:
   resolved "https://registry.yarnpkg.com/lg-exif/-/lg-exif-1.0.0.tgz#5a6d09717df5ebcaa0a1d0ce96bc5e54577d36da"
   integrity sha512-VCGfbyvE/pj0x04aPlinfoFehMAqnghTS4Fqm3U1VbLAS/rcSxVU8Ar6d7HPvVvs9s7+DBWSLS+5iWAknANykg==
 
-lightgallery@^1.6.12:
-  version "1.6.12"
-  resolved "https://registry.yarnpkg.com/lightgallery/-/lightgallery-1.6.12.tgz#c024428d1488969075dc551a85dddf905adb0e4b"
-  integrity sha512-t8hIgZc3ZvGW9pG8Bd68bXcUj7FWGewaroT7ADYo2fvQTgkqcMMLtXw9yQclS7BF0soadA0B6BN3MWOEiS2pYA==
+lightgallery@^1.6.14:
+  version "1.6.14"
+  resolved "https://registry.yarnpkg.com/lightgallery/-/lightgallery-1.6.14.tgz#415e5c870b59d45fbd3335cb3f510e7c7c88e464"
+  integrity sha512-WO5c8qXyYvWEImhlXw+xLeRfcnvU7kxg03i87Z38VFLFzvJYO3eD85KvAOJSuqYLzEqqBbiWdtuFdY+v2Dpreg==
   dependencies:
     jquery ">=1.7.0"
 
