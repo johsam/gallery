@@ -8,7 +8,7 @@
     "dotenv": "^8.2.0",
     "dotenv-expand": "^5.1.0",
     "fast-exif": "^1.0.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsrender": "^1.0.5",
     "koa": "^2.11.0",
     "koa-json": "^2.0.2",
