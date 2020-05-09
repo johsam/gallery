@@ -1,6 +1,6 @@
 /* globals moment:false */
 
-$(async function() {
+$(async () => {
     let results = [];
     const gallery = {};
 
@@ -8,8 +8,9 @@ $(async function() {
     $('#gallery-wrapper').hide();
 
     const getAllUrls = async (urls) => {
+        // eslint-disable-next-line no-useless-catch
         try {
-            var data = await Promise.all(urls.map(url => fetch(url).then(response => response.json())));
+            const data = await Promise.all(urls.map((url) => fetch(url).then((response) => response.json())));
             return data;
         } catch (error) {
             throw error;
@@ -20,7 +21,7 @@ $(async function() {
         $(target).lightGallery({
             share: false,
             dynamic: true,
-            dynamicEl: $(gallery[id])
+            dynamicEl: $(gallery[id]),
         });
     };
 
@@ -39,12 +40,7 @@ $(async function() {
             const { target } = event;
             event.stopPropagation();
 
-            showGallery(
-                target,
-                $(target)
-                    .closest('div')
-                    .data('id')
-            );
+            showGallery(target, $(target).closest('div').data('id'));
         });
     }, 1000);
 
@@ -77,8 +73,8 @@ $(async function() {
                     make: file.exif.make || '',
                     gpslatitude: file.exif.gpslatitude || '',
                     gpslongitude: file.exif.gpslongitude || '',
-                    gpsaltitude: file.exif.gpsaltitude || ''
-                }
+                    gpsaltitude: file.exif.gpsaltitude || '',
+                },
             });
         });
 
