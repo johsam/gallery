@@ -31,8 +31,13 @@ gallery="${GALLERY_PATH}"
 			cd "${d}" || exit
 			for f in ./*; do
 				if [ ! -h "${f}" ] && [ "${f}" != "poster.png" ]; then
-					echo "Processing file '$f'"
-					convert "${f}" -set filename:name "%t" -resize 200x "${thumbs}/${d}_%[filename:name].png"
+					path="${thumbs}/${d}_${f}"
+					noext="${path%.*}.png"
+					fullpath=$(echo "${noext}" | sed -e 's|\./||g')
+					if [ ! -f "${fullpath}" ]  ; then
+						echo "Processing file '$f'"
+						convert "${f}" -set filename:name "%t" -resize 200x "${thumbs}/${d}_%[filename:name].png"
+					fi
 				else
 					echo "Generating poster '${gallery}/${d}/poster.png'"
 					convert "${f}" -resize 500x "${gallery}/${d}/poster.png"
