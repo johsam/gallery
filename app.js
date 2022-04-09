@@ -1,6 +1,10 @@
 // Read .env and expand variables
 
-require('dotenv-expand')(require('dotenv').config());
+
+var dotenv = require('dotenv');
+var dotenvExpand = require('dotenv-expand');
+
+dotenvExpand.expand(dotenv.config());
 
 const path = require('path');
 const Koa = require('koa');
