@@ -19,7 +19,7 @@
     "lg-exif": "^1.0.0",
     "lightgallery": "^1.10.0",
     "mime": "^2.5.2",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "p-iteration": "^1.1.8"
   }
 }
