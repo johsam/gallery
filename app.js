@@ -51,4 +51,4 @@ app.use(gallery.routes()).use(gallery.allowedMethods());
 
 // Start our app
 console.log(`listening on port ${port}`);
-app.listen(port);
+app.listen(port,'127.0.0.1');
