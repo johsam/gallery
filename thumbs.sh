@@ -5,7 +5,14 @@ shopt -s nullglob
 
 ######################################################################
 #
-# Setup variables...
+# Generate thumbnails and posters for the gallery.
+#
+# Handles folders nested at any depth.
+#
+#   - every folder with a 'poster' symlink (or file) gets a
+#     'poster.png' (500px) generated next to it
+#   - every image gets a thumbnail (200px) in the flat thumbs folder,
+#     named <parent-folder>_<filename>.png to match walk.js
 #
 ######################################################################
 
@@ -22,28 +29,50 @@ fi
 thumbs="${THUMBS_PATH}"
 gallery="${GALLERY_PATH}"
 
-(
-	cd ${gallery} || exit
+cd "${gallery}" || exit 1
 
-	for d in ./*; do
-		echo "Processing directory '${d}'"
-		(
-			cd "${d}" || exit
-			for f in ./*; do
-				if [ ! -h "${f}" ] && [ "${f}" != "poster.png" ]; then
-					path="${thumbs}/${d}_${f}"
-					noext="${path%.*}.png"
-					fullpath=$(echo "${noext}" | sed -e 's|\./||g')
-					if [ ! -f "${fullpath}" ]  ; then
-						echo "Processing file '$f'"
-						convert "${f}" -set filename:name "%t" -resize 200x "${thumbs}/${d}_%[filename:name].png"
-					fi
-				else
-					echo "Generating poster '${gallery}/${d}/poster.png'"
-					convert "${f}" -resize 500x "${gallery}/${d}/poster.png"
-				fi
-			done
-		)
+# Every directory in the tree, at any depth
+
+find . -type d -print0 | while IFS= read -r -d '' d; do
+	dir="${d#./}"
+
+	# Skip the gallery root itself
+	[ -z "${dir}" ] && continue
+
+	echo "Processing directory '${dir}'"
+
+	# Generate poster.png from the 'poster' symlink/file if present
+
+	if [ -e "${dir}/poster" ]; then
+		if [ ! -f "${dir}/poster.png" ] || [ "${dir}/poster" -nt "${dir}/poster.png" ]; then
+			echo "Generating poster '${dir}/poster.png'"
+			convert "${dir}/poster" -resize 500x "${dir}/poster.png"
+		fi
+	fi
+
+	# Generate thumbnails for images directly in this folder
+
+	for f in "${dir}"/*; do
+		# Only regular files, skip links, posters and non-images (e.g. videos)
+
+		[ -f "${f}" ] || continue
+		[ -h "${f}" ] && continue
+
+		base=$(basename "${f}")
+		[ "${base}" = "poster" ] && continue
+		[ "${base}" = "poster.png" ] && continue
+
+		case "${base,,}" in
+			*.jpg|*.jpeg|*.png|*.gif|*.webp|*.tif|*.tiff) ;;
+			*) continue ;;
+		esac
+
+		parent=$(basename "${dir}")
+		target="${thumbs}/${parent}_${base%.*}.png"
+
+		if [ ! -f "${target}" ]; then
+			echo "Processing file '${f}'"
+			convert "${f}" -set filename:name "%t" -resize 200x "${thumbs}/${parent}_%[filename:name].png"
+		fi
 	done
-
-)
+done

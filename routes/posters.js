@@ -8,16 +8,32 @@ const api = (route, galleryPath) => {
     debug(`Adding route ${route}, Poster images served from ${galleryPath}`);
 
     router.get(route, async (ctx) => {
-        let list = await walk.exifInfo(walk.postersSync(galleryPath));
-        const result = [];
+        const tree = await walk.exifInfo(walk.allFilesSync(galleryPath));
+        const list = walk.posters(tree);
 
-        // Remove any entries without a file list
-        list = list.filter(item => item.files && item.files.length !== 0);
+        list.sort((a, b) => {
+            if (a.parent !== b.parent) {
+                return a.parent.localeCompare(b.parent);
+            }
 
-        // And return an array of posters
-        list.map(item => result.push({ title: item.directory, path: item.files[0].path }));
+            // Top level stays alphabetical; inside a subfolder view the
+            // tiles sort by the folder's latest photo date, oldest first
 
-        ctx.body = result.sort((a, b) => a.title > b.title);
+            if (a.parent === '') {
+                return a.album.localeCompare(b.album);
+            }
+
+            const ta = a.taken ? a.taken.getTime() : Infinity;
+            const tb = b.taken ? b.taken.getTime() : Infinity;
+
+            if (ta !== tb) {
+                return ta - tb;
+            }
+
+            return a.album.localeCompare(b.album);
+        });
+
+        ctx.body = list;
     });
 
     return router;

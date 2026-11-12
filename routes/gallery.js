@@ -8,7 +8,11 @@ const api = (route, galleryPath) => {
     debug(`Adding route ${route}, Gallery images served from ${galleryPath}`);
 
     router.get(route, async (ctx) => {
-        const list = await walk.exifInfo(walk.allFilesSync(galleryPath));
+        const tree = walk.allFilesSync(galleryPath);
+        const list = await walk.exifInfo(walk.albums(tree));
+
+        list.sort((a, b) => a.album.localeCompare(b.album));
+
         ctx.body = list;
     });
 

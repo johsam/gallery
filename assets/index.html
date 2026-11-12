@@ -11,20 +11,19 @@
         <link rel="stylesheet" type="text/css" media="screen" href="/gallery/css/lightgallery.min.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="/gallery/css/lg-exif.min.css" />
 
-        <link rel="stylesheet" type="text/css" media="screen" href="/gallery/css/main.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/gallery/css/main.css?v=6" />
 
         <script src="/gallery/javascript/jquery.min.js"></script>
-        <script src="/gallery/javascript/jsrender.min.js"></script>
         <script src="/gallery/javascript/jsrender.min.js"></script>
         <script src="/gallery/javascript/lightgallery-all.min.js"></script>
         <script src="/gallery/javascript/lg-exif.min.js"></script>
         <script src="/gallery/javascript/moment.min.js"></script>
 
-        <script src="/gallery/javascript/main.js"></script>
+        <script src="/gallery/javascript/main.js?v=6"></script>
 
         <!-- Templates -->
         <script id="posterItemTpl" type="text/template">
-            <div data-id="{{:title}}" class="tile">
+            <div data-id="{{:album}}" class="tile{{if category}} category{{/if}}">
                 <img src="{{:path}}" alt="" class="tile__media item">
                 <span class="tile__content">{{:title}}</span>
             </div>
@@ -39,10 +38,10 @@
         </header>
         -->
 
-            <div id="gallery-wrapper" class="gallery">
-                <!--
-            Populates by jsrender
-            --></div>
+            <div id="breadcrumb" class="breadcrumb"></div>
+
+            <!-- Populates by jsrender -->
+            <div id="gallery-wrapper"></div>
         </div>
     </body>
 </html>

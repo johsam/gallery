@@ -51,6 +51,28 @@ div.bg-div:after {
 
 
 
+.breadcrumb {
+  padding: 0 0 1rem 0;
+  font-size: 1.2rem;
+  color: #fff;
+  text-shadow: 1px 1px 3px black;
+}
+
+.breadcrumb .crumb {
+  cursor: pointer;
+}
+
+.breadcrumb .crumb:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb .crumb.current {
+  cursor: default;
+  font-weight: 600;
+}
+
+
+
 .tile {
     cursor: pointer;
     width: 100%;
@@ -115,19 +137,30 @@ div.bg-div:after {
     opacity: 0;
     color: #fff;
     font-size: 2rem;
+    padding: 0 1rem;
+    text-shadow: 2px 2px 6px black, 0 0 2px black;
     transition: visibility 0.5s, opacity 0.5s;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
   }
-  
+
+  /* Category tiles (folders with subfolders) always show their name */
+
+  .tile.category .tile__content {
+    visibility: visible;
+    opacity: 1;
+  }
+
   .tile:hover .tile__content,
   .tile:focus .tile__content {
     visibility: visible;
     opacity: 1;
   }
-  
- 
 
-  
+
+  .tile__media.item {
+    min-height: 225 !important;
+    /*aspect-ratio: 500/225;*/
+  }
